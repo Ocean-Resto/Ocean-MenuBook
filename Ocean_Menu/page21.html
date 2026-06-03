@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Ocean Signature Menu A4</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Cormorant+Garamond:wght@500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+
+  background:#1a1a1a;
+
+  font-family:'Montserrat',sans-serif;
+
+  display:flex;
+  justify-content:center;
+
+  padding:40px;
+}
+
+/* A4 SIZE */
+.menu-page{
+
+  width:210mm;
+  min-height:297mm;
+
+  background:
+  linear-gradient(
+    180deg,
+    #0d0d0d,
+    #070707
+  );
+
+  color:white;
+
+  position:relative;
+
+  overflow:hidden;
+
+  padding:34px;
+
+  box-shadow:
+  0 30px 80px rgba(0,0,0,.65);
+}
+
+/* GOLD FRAME */
+.menu-page::before{
+
+  content:'';
+
+  position:absolute;
+
+  inset:16px;
+
+  border:1px solid rgba(243,201,105,.18);
+
+  pointer-events:none;
+}
+
+/* HEADER */
+.header{
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding-bottom:24px;
+
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.brand{
+
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.logo{
+
+  width:72px;
+  height:72px;
+
+  object-fit:contain;
+
+  border-radius:50%;
+
+  padding:8px;
+
+  background:rgba(255,255,255,.03);
+
+  border:1px solid rgba(243,201,105,.35);
+}
+
+.brand-text h1{
+
+  font-size:44px;
+
+  line-height:1;
+
+  font-weight:900;
+
+  letter-spacing:5px;
+}
+
+.brand-text p{
+
+  margin-top:8px;
+
+  font-size:13px;
+
+  letter-spacing:3px;
+
+  color:#bdbdbd;
+}
+
+.contact{
+
+  text-align:right;
+}
+
+.phone{
+
+  font-size:15px;
+
+  font-weight:700;
+
+  color:#f3c969;
+}
+
+.address{
+
+  margin-top:6px;
+
+  color:#a7a7a7;
+
+  line-height:1.8;
+
+  font-size:12px;
+}
+
+/* HERO */
+.hero{
+
+  text-align:center;
+
+  padding:44px 0 36px;
+}
+
+.hero small{
+
+  color:#f3c969;
+
+  letter-spacing:5px;
+
+  font-size:13px;
+}
+
+.hero h2{
+
+  margin-top:14px;
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:78px;
+
+  line-height:1;
+}
+
+.hero span{
+
+  display:block;
+
+  font-family:'Great Vibes',cursive;
+
+  font-size:88px;
+
+  color:#f3c969;
+
+  margin-top:6px;
+}
+
+.divider{
+
+  width:220px;
+  height:1px;
+
+  margin:26px auto 0;
+
+  background:
+  linear-gradient(
+    to right,
+    transparent,
+    #f3c969,
+    transparent
+  );
+}
+
+/* MENU SECTION */
+.menu-section{
+
+  display:flex;
+  flex-direction:column;
+
+  gap:48px;
+}
+
+/* MENU ITEM */
+.menu-item{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:32px;
+
+  align-items:center;
+}
+
+/* REVERSE */
+.menu-item.reverse .menu-image-wrap{
+  order:2;
+}
+
+.menu-item.reverse .menu-content{
+  order:1;
+}
+
+/* IMAGE */
+.menu-image-wrap{
+
+  position:relative;
+}
+
+.menu-image{
+
+  width:100%;
+  height:340px;
+
+  object-fit:cover;
+
+  border-radius:26px;
+
+  border:1px solid rgba(243,201,105,.18);
+
+  box-shadow:
+  0 20px 45px rgba(0,0,0,.55),
+  0 0 25px rgba(243,201,105,.08);
+}
+
+/* BADGE */
+.badge{
+
+  position:absolute;
+
+  top:18px;
+  left:18px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #ffcc4d,
+    #ff9800
+  );
+
+  color:#111;
+
+  padding:10px 16px;
+
+  border-radius:100px;
+
+  font-size:12px;
+
+  font-weight:800;
+
+  letter-spacing:1px;
+}
+
+/* CONTENT */
+.menu-content{
+
+  padding:10px;
+}
+
+/* MENU NAME */
+.menu-name{
+
+  font-family:'Cormorant Garamond',serif;
+
+  font-size:62px;
+
+  line-height:1;
+
+  margin-bottom:18px;
+}
+
+/* PRICE */
+.price{
+
+  display:inline-block;
+
+  padding:12px 26px;
+
+  border-radius:100px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #f3c969,
+    #ffb84d
+  );
+
+  color:#111;
+
+  font-weight:900;
+
+  font-size:18px;
+
+  margin-bottom:24px;
+
+  box-shadow:
+  0 10px 25px rgba(243,201,105,.18);
+}
+
+/* DESCRIPTION */
+.desc{
+
+  font-size:15px;
+
+  line-height:2;
+
+  color:#d5d5d5;
+}
+
+/* FOOTER */
+.footer{
+
+  margin-top:50px;
+
+  padding-top:26px;
+
+  border-top:1px solid rgba(255,255,255,.08);
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.social{
+
+  display:flex;
+  gap:12px;
+}
+
+.social a{
+
+  text-decoration:none;
+
+  color:#f3c969;
+
+  border:1px solid rgba(243,201,105,.22);
+
+  padding:10px 18px;
+
+  border-radius:100px;
+
+  font-size:12px;
+
+  font-weight:700;
+}
+
+.footer-note{
+
+  text-align:right;
+}
+
+.footer-note small{
+
+  color:#999;
+
+  letter-spacing:2px;
+}
+
+.footer-note p{
+
+  margin-top:5px;
+
+  font-weight:700;
+}
+
+/* PRINT A4 */
+@page{
+  size:A4;
+  margin:0;
+}
+
+@media print{
+
+  body{
+    background:none;
+    padding:0;
+  }
+
+  .menu-page{
+    width:210mm;
+    height:297mm;
+    box-shadow:none;
+  }
+
+}
+
+ /* NAVIGATION ARROWS */
+.nav-arrow {
+  position: fixed;
+  bottom: 20px;
+  z-index: 999;
+}
+
+.nav-arrow a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #d4af37;
+  border-radius: 50%;
+  color: #d4af37;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+/* HOVER */
+.nav-arrow a:hover {
+  background: #d4af37;
+  color: #000;
+}
+
+/* POSISI */
+.nav-arrow.next {
+  right: 20px;
+}
+
+.nav-arrow.prev {
+  left: 20px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.actions button {
+  padding: 12px 20px;
+  border: 1px solid #d4af37;
+  background: #111;
+  color: #f7e7a1;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.actions button:hover {
+  background: #d4af37;
+  color: #000;
+}
+</style>
+</head>
+
+<body>
+
+<div class="menu-page">
+
+  <!-- HEADER -->
+  <div class="header">
+
+    <div class="brand">
+
+      <img src="logo.png" class="logo">
+
+      <div class="brand-text">
+
+        <h1>OCEAN</h1>
+
+        <p>Cafe & Resto EST.2023</p>
+
+      </div>
+
+    </div>
+
+    <div class="contact">
+
+      <div class="phone">
+        0857-1246-9835
+      </div>
+
+      <div class="address">
+        Jl Ahmad Yani No 34 Kutorejo, Sragen
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+
+    <small>PREMIUM INDONESIAN CUISINE</small>
+
+    <h2>
+      OCEAN
+      <span>Signature Menu</span>
+    </h2>
+
+    <div class="divider"></div>
+
+  </div>
+
+  <!-- MENU SECTION -->
+  <div class="menu-section">
+
+    <!-- MENU 1 -->
+    <div class="menu-item">
+
+      <!-- IMAGE -->
+      <div class="menu-image-wrap">
+
+        <div class="badge">
+          BEST SELLER
+        </div>
+
+        <img src="rawon.jpg" class="menu-image">
+
+      </div>
+
+      <!-- CONTENT -->
+      <div class="menu-content">
+
+        <div class="menu-name">
+          Rawon Iga
+        </div>
+
+        <div class="price">
+          Rp 44.000
+        </div>
+
+        <div class="desc">
+          Rawon premium dengan iga sapi pilihan,
+          dimasak perlahan hingga empuk dengan
+          kuah hitam khas Jawa Timur yang kaya
+          rempah dan aroma autentik.
+          Disajikan bersama nasi hangat,
+          sambal, dan pelengkap spesial.
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- MENU 2 -->
+    <div class="menu-item reverse">
+
+      <!-- IMAGE -->
+      <div class="menu-image-wrap">
+
+        <div class="badge">
+          FAVORITE MENU
+        </div>
+
+        <img src="rawon-iga.jpg" class="menu-image">
+
+      </div>
+
+      <!-- CONTENT -->
+      <div class="menu-content">
+
+        <div class="menu-name">
+          Rawon Komplit
+        </div>
+
+        <div class="price">
+          Rp 39.000
+        </div>
+
+        <div class="desc">
+          Sajian rawon komplit dengan
+          potongan daging sapi lembut,
+          telur asin, taoge pendek,
+          kerupuk, dan taburan bawang goreng
+          yang menciptakan cita rasa
+          tradisional premium khas Nusantara.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+
+    <div class="social">
+
+      <a href="#">
+        @ocean.srg
+      </a>
+
+      <a href="#">
+        Ocean Cafe & Resto
+      </a>
+
+    </div>
+
+    <div class="footer-note">
+
+      <small>GOOD FOOD • GOOD MOOD</small>
+
+      <p>Open Daily 10 AM - 11 PM</p>
+
+    </div>
+
+  </div>
+
+   <div class="actions">
+  <button onclick="window.print()">Export PDF</button>
+  <button onclick="downloadPNG()">Download PNG</button>
+</div>
+  
+ <div class="nav-arrow prev">
+  <a href="page20.html">
+    <i class="fas fa-arrow-left"></i>
+  </a>
+</div>
+
+  <div class="nav-arrow next">
+  <a href="page21.html">
+    <i class="fas fa-arrow-right"></i>
+  </a>
+</div>
+  
+</div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+async function downloadPNG() {
+  const target = document.querySelector(".menu-page");
+
+  const actions = document.querySelector(".actions");
+  const themeSwitcher = document.querySelector(".theme-switcher");
+  const navArrows = document.querySelectorAll(".nav-arrow");
+
+  /* ambil warna aktif dari container */
+  const bgColor = getComputedStyle(target).backgroundColor;
+
+  if (actions) actions.style.display = "none";
+  if (themeSwitcher) themeSwitcher.style.display = "none";
+
+  navArrows.forEach(nav => {
+    nav.style.display = "none";
+  });
+
+  await new Promise(resolve => setTimeout(resolve, 200));
+
+  const canvas = await html2canvas(target, {
+    scale: 3,
+    useCORS: true,
+    backgroundColor:"#000000",
+    logging: false
+  });
+
+  const link = document.createElement("a");
+  link.download = "ocean-menu-premium.png";
+  link.href = canvas.toDataURL("image/png", 1.0);
+  link.click();
+
+  if (actions) actions.style.display = "flex";
+  if (themeSwitcher) themeSwitcher.style.display = "flex";
+
+  navArrows.forEach(nav => {
+    nav.style.display = "block";
+  });
+}
+</script>
+
+</body>
+</html>

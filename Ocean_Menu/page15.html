@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ocean Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+<style>
+body {
+  margin: 0;
+  background: #07141d;
+  color: #eaeaea;
+  font-family: 'Playfair Display', serif;
+}
+
+
+/* =========================
+   THEME VARIABLES
+========================= */
+
+/* DEFAULT = sedikit gelap (deep ocean luxury) */
+:root {
+  --bg-main: #10222d;
+  --gold-main: #d4af37;
+  --gold-soft: rgba(212,175,55,0.5);
+  --text-soft: #b8b8b8;
+}
+
+/* Gelap sedang = sunset blue luxury */
+body.theme-mid {
+  --bg-main: #2f4a5a;
+  --gold-main: #f1c86a;
+  --gold-soft: rgba(241,200,106,0.5);
+  --text-soft: #f2dfc2;
+}
+
+/* Terang / hangat = golden sunset premium */
+body.theme-warm {
+  --bg-main: #6b4b3e;
+  --gold-main: #ffd98a;
+  --gold-soft: rgba(255,217,138,0.55);
+  --text-soft: #fff0d2;
+}
+/* =========================
+   COLOR SWITCHER
+========================= */
+
+.theme-switcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid rgba(212,175,55,0.35);
+  border-radius: 14px;
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(10px);
+}
+
+.theme-btn {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.25);
+  transition: 0.25s;
+}
+
+.theme-btn:hover {
+  transform: scale(1.12);
+}
+
+.theme-btn.dark {
+  background: #10222d;
+}
+
+.theme-btn.mid {
+  background: #18313f;
+}
+
+.theme-btn.warm {
+  background: #5a4a35;
+}
+
+/* ===== LAYOUT ===== */
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 60px 18px;
+  padding-top: -5px;
+  background: var(--bg-main);
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 60px 20px;
+  }
+}
+/* ===== HEADER ===== */
+.header {
+  text-align: center;
+  padding: 20px 15px;
+  margin-top: -20px;
+  margin-bottom: 0;
+}
+
+/* LOGO */
+.logo img {
+  width: 70px;              /* lebih kecil */
+  height: 70px;             /* biar benar-benar bulat */
+  object-fit: cover;        /* isi penuh lingkaran */
+  border-radius: 50%;
+  border: 1px solid #d4af37;
+}
+
+/* NAMA RESTO */
+.restaurant-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;          /* diperkecil */
+  margin-top: 10px;
+  letter-spacing: 3px;
+}
+
+/* TAGLINE */
+.tagline {
+  font-size: 14px;
+  color: #aaa;
+  letter-spacing: 2px;
+  margin-top: 5px;
+}
+
+/* GARIS */
+.divider {
+  width: 50px;
+  height: 1px;
+  background: #d4af37;
+  margin: 15px auto;
+  
+}
+
+/* INFO */
+.info {
+  font-size: 14px;
+  color: #888;
+  line-height: 1;
+  margin: 10px auto 0; /* bawah 0 biar nempel */
+}
+/* ===== CONTENT (MENU) ===== */
+.menu-section {
+  position: relative;
+  margin: 50px 0;
+  padding: 40px;
+  border-top: 1px solid #d4af37;
+  border-bottom: 1px solid #d4af37;
+}
+
+/* BACKGROUND IMAGE */
+.menu-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('tumpeng.jpg') center/cover no-repeat;
+  opacity: 0.25;
+  z-index: 0;
+}
+
+.menu-content {
+  position: relative;
+  z-index: 1;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #d4af37;
+  padding-bottom: 10px;
+  text-align: center;
+}
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.item-name {
+  font-size: 16px;
+  color: #fff;
+}
+
+.item-desc {
+  font-size: 14px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.item-price {
+  color: #d4af37;
+  font-size: 16px;
+}
+.menu-item {
+  page-break-inside: avoid;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* bikin isi ke tengah */
+}
+
+.social-inline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%; /* 🔥 ini kunci (nggak full lebar) */
+  max-width: 300px; /* biar tetap compact */
+}
+
+.social-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #d4af37;
+}
+
+.social-item i {
+  color: #d4af37;
+  font-size: 13px;
+}
+.social-inline {
+  width: 75%;
+}
+/* TEXT BAWAH */
+.footer-text {
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+@page {
+  size: A4;
+  margin: 10mm;
+}
+
+@media print {
+
+  /* RESET & COLOR FIX */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    background: transparent !important;
+  }
+
+  /* CONTAINER FIX (UKURAN A4) */
+  .container {
+    width: 210mm;
+    height: 297mm;
+    background: #000 !important;
+    padding: 15mm;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  /* HAPUS NAVIGASI */
+  .next-page,
+  .prev-page {
+    display: none;
+  }
+
+  /* FOOTER NEMPEL BAWAH */
+  .footer {
+    position: absolute;
+    bottom: 10mm;
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* KASIH RUANG BUAT FOOTER */
+  .menu-section {
+    margin-bottom: 40px;
+  }
+
+}
+
+/* NAVIGATION ARROWS */
+.nav-arrow {
+  position: fixed;
+  bottom: 20px;
+  z-index: 999;
+}
+
+.nav-arrow a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #d4af37;
+  border-radius: 50%;
+  color: #d4af37;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+/* HOVER */
+.nav-arrow a:hover {
+  background: #d4af37;
+  color: #000;
+}
+
+/* POSISI */
+.nav-arrow.next {
+  right: 20px;
+}
+
+.nav-arrow.prev {
+  left: 20px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.actions button {
+  padding: 12px 20px;
+  border: 1px solid #d4af37;
+  background: #111;
+  color: var(--gold-main);
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.actions button:hover {
+  background: #d4af37;
+  color: #000;
+}
+
+
+.item-desc {
+    color: #ffffff !important;
+  }
+
+ /* ================================= */
+/* WEEKDAY TITLE */
+/* ================================= */
+
+.weekday-title{
+
+  text-align:center;
+
+  font-size:18px;
+
+  letter-spacing:4px;
+
+  margin-top:40px;
+  margin-bottom:50px;
+
+  color:var(--gold-main);
+
+  position:relative;
+}
+
+.weekday-title::after{
+
+  content:"";
+
+  width:90px;
+  height:2px;
+
+  background:var(--gold-main);
+
+  display:block;
+
+  margin:18px auto 0;
+}
+
+/* ================================= */
+/* DAY LABEL */
+/* ================================= */
+
+.day-label{
+
+  display:inline-block;
+
+  padding:12px 26px;
+
+  margin-top:35px;
+  margin-bottom:25px;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(212,175,55,0.18),
+    rgba(255,255,255,0.04)
+  );
+
+  border:1px solid rgba(212,175,55,0.35);
+
+  color:var(--gold-main);
+
+  font-size:15px;
+  letter-spacing:3px;
+  font-weight:700;
+}
+
+/* ================================= */
+/* GRID */
+/* ================================= */
+
+.bundle-grid{
+
+  display:grid;
+
+  grid-template-columns:1fr;
+
+  gap:28px;
+}
+
+/* ================================= */
+/* WEEKDAY TITLE */
+/* ================================= */
+
+.weekday-title{
+
+  text-align:center;
+
+  font-size:16px;
+
+  letter-spacing:3px;
+
+  margin-top:30px;
+  margin-bottom:35px;
+
+  color:var(--gold-main);
+}
+
+.weekday-title::after{
+
+  content:"";
+
+  width:70px;
+  height:1px;
+
+  background:var(--gold-main);
+
+  display:block;
+
+  margin:14px auto 0;
+}
+
+/* ================================= */
+/* DAY LABEL */
+/* ================================= */
+
+.day-label{
+
+  display:inline-block;
+
+  padding:8px 18px;
+
+  margin-top:18px;
+  margin-bottom:16px;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(212,175,55,0.18),
+    rgba(255,255,255,0.04)
+  );
+
+  border:1px solid rgba(212,175,55,0.35);
+
+  color:var(--gold-main);
+
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:700;
+}
+
+/* ================================= */
+/* GRID */
+/* ================================= */
+
+.bundle-grid{
+
+  display:grid;
+
+  grid-template-columns:1fr;
+
+  gap:16px;
+}
+
+.bundle-grid{
+
+  display:grid;
+
+  gap:10px;
+}
+
+.bundle-card{
+
+  display:flex;
+
+  flex-direction:column;
+
+  border-radius:18px;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(255,255,255,0.045),
+    rgba(255,255,255,0.015)
+  );
+
+  border:1px solid rgba(255,255,255,0.05);
+
+  overflow:hidden;
+}
+/* ROW PER PROMO */
+
+.bundle-row{
+
+  width:100%;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  padding:16px 22px 16px 18px;
+}
+  
+/* ================================= */
+/* LEFT */
+/* ================================= */
+
+.bundle-food{
+
+  flex:1;
+
+  padding-right:10px;
+}
+
+/* LABEL */
+
+.promo-label{
+
+  display:inline-block;
+
+  padding:3px 8px;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(135deg,#d4af37,#f6e27a);
+
+  color:#111;
+
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1px;
+
+  margin-bottom:6px;
+}
+
+/* TITLE */
+
+.bundle-food h2{
+
+  font-size:16px;
+
+  line-height:1.1;
+
+  margin-bottom:4px;
+}
+
+/* DESC */
+
+.bundle-food p{
+
+  font-size:10px;
+
+  line-height:1.4;
+
+  color:rgba(255,255,255,0.6);
+
+  margin-bottom:8px;
+
+  max-width:320px;
+}
+
+/* ================================= */
+/* PRICE */
+/* ================================= */
+
+.price-area{
+
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.old-price{
+
+  font-size:16px;
+
+  color:rgba(255,255,255,0.3);
+
+  text-decoration:line-through;
+}
+
+.new-price{
+
+  font-size:18px;
+  font-weight:700;
+
+  color:#f6e27a;
+}
+
+/* ================================= */
+/* RIGHT */
+/* ================================= */
+
+.bundle-drink{
+
+  width:110px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  position:relative;
+}
+
+/* IMAGE */
+
+.bundle-drink img{
+
+  width:46px;
+  height:46px;
+
+  border-radius:12px;
+
+  object-fit:cover;
+
+  margin-bottom:5px;
+
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+/* FREE BADGE */
+
+.free-title{
+
+  position:absolute;
+
+  top:-2px;
+  right:0;
+
+  padding:3px 6px;
+
+  border-radius:999px;
+
+  background:
+  linear-gradient(135deg,#00d2ff,#3a7bd5);
+
+  font-size:7px;
+  font-weight:700;
+
+  letter-spacing:1px;
+}
+
+/* DRINK NAME */
+
+.drink-name{
+
+  font-size:10px;
+
+  text-align:center;
+
+  line-height:1.2;
+
+  color:#ddd;
+}
+
+/* ================================= */
+/* MOBILE */
+/* ================================= */
+
+@media(max-width:850px){
+
+.bundle-card{
+
+  min-height:76px;
+
+  padding:9px 10px;
+}
+
+.bundle-food h2{
+  font-size:14px;
+}
+
+.bundle-food p{
+  font-size:9px;
+}
+
+.new-price{
+  font-size:15px;
+}
+
+.bundle-drink{
+  width:90px;
+}
+
+.bundle-drink img{
+  width:38px;
+  height:38px;
+}
+
+.drink-name{
+  font-size:9px;
+}
+
+}
+
+/* ================================= */
+/* COMPACT DOUBLE PROMO CARD */
+/* ================================= */
+
+.compact-card{
+
+  padding:0;
+
+  overflow:hidden;
+}
+
+/* ITEM */
+
+.compact-item{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  padding:14px 18px;
+}
+
+/* GARIS PEMBATAS */
+
+.compact-divider{
+
+  height:1px;
+
+  background:
+  linear-gradient(
+    90deg,
+    transparent,
+    rgba(212,175,55,0.25),
+    transparent
+  );
+}
+
+/* LEFT */
+
+.food-side h3{
+
+  font-size:16px;
+
+  margin:4px 0 8px;
+}
+
+/* PRICE */
+
+.price-line{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+}
+
+/* RIGHT */
+
+.drink-side{
+
+  position:relative;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  width:85px;
+}
+
+/* MINI BADGE */
+
+.free-mini{
+
+  position:absolute;
+
+  top:-6px;
+  right:0;
+
+  background:
+  linear-gradient(135deg,#00d2ff,#3a7bd5);
+
+  padding:3px 6px;
+
+  border-radius:999px;
+
+  font-size:6px;
+
+  font-weight:700;
+
+  letter-spacing:1px;
+}
+
+/* MINI IMAGE */
+
+.drink-side img{
+
+  width:42px;
+  height:42px;
+
+  object-fit:cover;
+
+  border-radius:10px;
+
+  margin-bottom:4px;
+}
+
+/* DRINK TEXT */
+
+.drink-side span{
+
+  font-size:9px;
+
+  text-align:center;
+
+  line-height:1.2;
+
+  color:#ddd;
+}
+
+/* ================================= */
+/* SIMPLE BUNDLE */
+/* ================================= */
+
+.simple-bundle{
+
+  padding:0;
+
+  overflow:hidden;
+}
+
+/* LINE */
+
+.promo-line{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:12px;
+
+  padding:14px 18px;
+}
+
+/* LEFT WRAP */
+
+.promo-food-wrap{
+
+  flex:1;
+}
+
+/* FOOD NAME */
+
+.promo-food{
+
+  font-size:15px;
+
+  color:#fff;
+
+  margin-bottom:3px;
+}
+
+/* DESCRIPTION */
+
+.promo-desc{
+
+  font-size:11px;
+
+  color:rgba(255,255,255,0.58);
+
+  line-height:1.4;
+}
+
+/* ARROW */
+
+.promo-arrow{
+
+  color:var(--gold-main);
+
+  opacity:0.7;
+
+  font-size:15px;
+}
+
+/* RIGHT */
+
+.promo-drink{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+  position:relative;
+}
+
+/* IMAGE */
+
+.promo-drink img{
+
+  width:34px;
+  height:34px;
+
+  object-fit:cover;
+
+  border-radius:10px;
+
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+/* DRINK TEXT */
+
+.promo-drink span{
+
+  font-size:12px;
+
+  color:#ddd;
+}
+
+/* FREE BADGE */
+
+.free-badge-mini{
+
+  position:absolute;
+
+  top:-5px;
+  left:30px;
+
+  background:
+  linear-gradient(135deg,#00d2ff,#3a7bd5);
+
+  padding:2px 6px;
+
+  border-radius:999px;
+
+  font-size:11px;
+
+  font-weight:700;
+
+  letter-spacing:1px;
+}
+
+/* DIVIDER */
+
+.compact-divider{
+
+  height:1px;
+
+  background:
+  linear-gradient(
+    90deg,
+    transparent,
+    rgba(212,175,55,0.18),
+    transparent
+  );
+}
+
+/* ================================= */
+/* DOUBLE BUNDLE */
+/* ================================= */
+
+.double-bundle{
+
+  padding:0;
+
+  overflow:hidden;
+}
+
+/* ROW */
+
+.bundle-row{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:14px;
+
+  padding:16px 18px;
+}
+
+/* LEFT */
+
+.bundle-left{
+
+  flex:1;
+
+  min-width:0;
+}
+/* FOOD */
+
+.food-title{
+
+  font-size:16px;
+
+  margin:5px 0 4px;
+
+  color:#fff;
+}
+
+/* DESC */
+
+.food-desc{
+
+  font-size:12px;
+
+  line-height:1.4;
+
+  color:rgba(255,255,255,0.58);
+
+  margin-bottom:10px;
+
+  max-width:300px;
+}
+
+/* ARROW */
+
+.bundle-arrow{
+
+  color:var(--gold-main);
+
+  font-size:16px;
+
+  opacity:0.7;
+
+  margin-right:2px;
+
+  flex-shrink:0;
+}
+
+/* RIGHT */
+
+.bundle-right{
+
+  width:82px;
+
+  flex-shrink:0;
+
+  position:relative;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  margin-right:18px;
+}
+
+/* IMAGE */
+
+.bundle-right img{
+
+  width:52px;
+  height:52px;
+
+  object-fit:contain;
+
+  margin-bottom:4px;
+
+  background:none;
+
+  border:none;
+
+  box-shadow:none;
+
+  border-radius:0;
+}
+/* DRINK */
+
+.drink-title{
+
+  font-size:12px;
+
+  text-align:center;
+
+  line-height:1.2;
+
+  color:#ddd;
+}
+
+/* FREE */
+.free-title-mini{
+
+  position:absolute;
+
+  top:-16px;
+
+  right:4px;
+
+  background:
+  linear-gradient(135deg,#00d2ff,#3a7bd5);
+
+  padding:3px 8px;
+
+  border-radius:999px;
+
+  font-size:11px;
+
+  font-weight:700;
+
+  letter-spacing:1px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     THEME SWITCHER
+========================= -->
+
+<div class="theme-switcher">
+  <div class="theme-btn dark" onclick="setTheme('dark')"></div>
+  <div class="theme-btn mid" onclick="setTheme('mid')"></div>
+  <div class="theme-btn warm" onclick="setTheme('warm')"></div>
+</div>
+
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">
+    <img src="logo.png">
+  </div>
+  <div class="restaurant-name">OCEAN</div>
+  <div class="tagline">Cafe & Resto • EST. 2023</div>
+  <div class="divider"></div>
+  <div class="info">
+    Jl. Ahmad Yani No.34 Sragen<br>
+    0857-4102-2111 || 0857-1246-9835
+  </div>
+</div>
+
+<div class="weekday-title">
+  WEEKDAY BUNDLING PROMO
+</div>
+
+<div class="day-label">
+  MONDAY
+</div>
+<div class="bundle-card double-bundle">
+
+  <!-- PROMO 1 -->
+  <div class="bundle-row">
+
+    <!-- LEFT -->
+    <div class="bundle-left">
+
+      <div class="promo-label">
+        WEEKDAY DEAL
+      </div>
+
+      <div class="food-title">
+        Pasta Aglio O Lio
+      </div>
+
+      <div class="food-desc">
+        Spicy Pasta with Smooked Beef.
+      </div>
+
+      <div class="price-area">
+
+        <span class="old-price">
+          IDR 47K
+        </span>
+
+        <span class="new-price">
+          Rp 33K
+        </span>
+
+      </div>
+
+    </div>
+
+    <!-- ARROW -->
+    <div class="bundle-arrow">
+      →
+    </div>
+
+    <!-- RIGHT -->
+    <div class="bundle-right">
+
+      <div class="free-title-mini">
+        OFF 30%
+      </div>
+
+      <img src="strawberry-mojito.png">
+
+      <div class="drink-title">
+        Mojito
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- DIVIDER -->
+
+  <div class="compact-divider"></div>
+
+  <!-- PROMO 2 -->
+  <div class="bundle-row">
+
+    <!-- LEFT -->
+    <div class="bundle-left">
+
+      <div class="promo-label">
+        MENU SPECIAL
+      </div>
+
+      <div class="food-title">
+        Ayam Kampoeng Kremes
+      </div>
+
+      <div class="food-desc">
+        Nasi putih,ayam kampung goreng,sambal,lalapan.
+      </div>
+
+      <div class="price-area">
+
+        <span class="old-price">
+          IDR 58K
+        </span>
+
+        <span class="new-price">
+          IDR 39K
+        </span>
+
+      </div>
+
+    </div>
+
+    <!-- ARROW -->
+    <div class="bundle-arrow">
+      →
+    </div>
+
+    <!-- RIGHT -->
+    <div class="bundle-right">
+
+      <div class="free-title-mini">
+        OFF 33%
+      </div>
+
+      <img src="leci-tea.png">
+
+      <div class="drink-title">
+        Lychee Tea Hot/Ice
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+  <div class="day-label">
+  TUESDAY
+</div>
+<div class="bundle-card double-bundle">
+
+  <!-- PROMO 1 -->
+  <div class="bundle-row">
+
+    <!-- LEFT -->
+    <div class="bundle-left">
+
+      <div class="promo-label">
+        WEEKDAY DEAL
+      </div>
+
+      <div class="food-title">
+        Chicken Cordon Bleu
+      </div>
+
+      <div class="food-desc">
+        Cheese chicken roll,fries,mix salad,BBQ sauce.
+      </div>
+
+      <div class="price-area">
+
+        <span class="old-price">
+          IDR 49K
+        </span>
+
+        <span class="new-price">
+          Rp 34K
+        </span>
+
+      </div>
+
+    </div>
+
+    <!-- ARROW -->
+    <div class="bundle-arrow">
+      →
+    </div>
+
+    <!-- RIGHT -->
+    <div class="bundle-right">
+
+      <div class="free-title-mini">
+        OFF 30%
+      </div>
+
+      <img src="yakuberry.png">
+
+      <div class="drink-title">
+        Sweet Yaku Berry
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- DIVIDER -->
+
+  <div class="compact-divider"></div>
+
+  <!-- PROMO 2 -->
+  <div class="bundle-row">
+
+    <!-- LEFT -->
+    <div class="bundle-left">
+
+      <div class="promo-label">
+        MENU SPECIAL
+      </div>
+
+      <div class="food-title">
+        Ayam Kampoeng Bakar
+      </div>
+
+      <div class="food-desc">
+        Nasiputih,Ayam kampung bakar,sambal,lalapan.
+      </div>
+
+      <div class="price-area">
+
+        <span class="old-price">
+          IDR 59K
+        </span>
+
+        <span class="new-price">
+          IDR 35K
+        </span>
+
+      </div>
+
+    </div>
+
+    <!-- ARROW -->
+    <div class="bundle-arrow">
+      →
+    </div>
+
+    <!-- RIGHT -->
+    <div class="bundle-right">
+
+      <div class="free-title-mini">
+        OFF 33%
+      </div>
+
+      <img src="tea.png">
+
+      <div class="drink-title">
+        Lemon Tea Hot/Ice
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+  <div class="day-label">
+  WEDNESDAY
+</div>
+<div class="bundle-card double-bundle">
+
+  <!-- PROMO 1 -->
+  <div class="bundle-row">
+
+    <!-- LEFT -->
+    <div class="bundle-left">
+
+      <div class="promo-label">
+        WEEKDAY DEAL
+      </div>
+
+      <div class="food-title">
+        Seblak Special
+      </div>
+
+      <div class="food-desc">
+        level 1-5,pilihan toping:seafood/mix bakso/ayam.
+      </div>
+
+      <div class="price-area">
+
+        <span class="old-price">
+          IDR 39K
+        </span>
+
+        <span class="new-price">
+          Rp 27K
+        </span>
+
+      </div>
+
+    </div>
+
+    <!-- ARROW -->
+    <div class="bundle-arrow">
+      →
+    </div>
+
+    <!-- RIGHT -->
+    <div class="bundle-right">
+
+      <div class="free-title-mini">
+        OFF 32%
+      </div>
+
+      <img src="milkshake.png">
+
+      <div class="drink-title">
+        Lychee Milk Shake
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- DIVIDER -->
+
+  <div class="compact-divider"></div>
+
+  <!-- PROMO 2 -->
+  <div class="bundle-row">
+
+    <!-- LEFT -->
+    <div class="bundle-left">
+
+      <div class="promo-label">
+        MENU SPECIAL
+      </div>
+
+      <div class="food-title">
+        Iga Gongso
+      </div>
+
+      <div class="food-desc">
+        Nasi putih,iga gongso,lalapan.
+      </div>
+
+      <div class="price-area">
+
+        <span class="old-price">
+          IDR 58K
+        </span>
+
+        <span class="new-price">
+          IDR 37K
+        </span>
+
+      </div>
+
+    </div>
+
+    <!-- ARROW -->
+    <div class="bundle-arrow">
+      →
+    </div>
+
+    <!-- RIGHT -->
+    <div class="bundle-right">
+
+      <div class="free-title-mini">
+        OFF 32%
+      </div>
+
+      <img src="tea.png">
+
+      <div class="drink-title">
+        Black Tea Hot/Ice
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+  <br>
+  
+<div class="footer">
+  
+  <div class="social-inline">
+    <div class="social-item">
+      <i class="fab fa-instagram"></i> ocean.srg
+    </div>
+
+    <div class="social-item">
+      <i class="fab fa-facebook-f"></i> oceansrg
+    </div>
+
+    <div class="social-item">
+      <i class="fab fa-tiktok"></i> ocean bar & kitchen
+    </div>
+  </div>
+</div>
+
+  <div class="actions">
+  <button onclick="window.print()">Export PDF</button>
+  <button onclick="downloadPNG()">Download PNG</button>
+</div>
+  
+ <div class="nav-arrow prev">
+  <a href="page14.html">
+    <i class="fas fa-arrow-left"></i>
+  </a>
+</div>
+
+  <div class="nav-arrow next">
+  <a href="page16.html">
+    <i class="fas fa-arrow-right"></i>
+  </a>
+    
+</div>
+</div>
+<script>
+function setTheme(mode) {
+  document.body.classList.remove("theme-mid", "theme-warm");
+
+  if (mode === "mid") {
+    document.body.classList.add("theme-mid");
+  }
+
+  if (mode === "warm") {
+    document.body.classList.add("theme-warm");
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+async function downloadPNG() {
+  const target = document.querySelector(".container");
+
+  const actions = document.querySelector(".actions");
+  const themeSwitcher = document.querySelector(".theme-switcher");
+  const navArrows = document.querySelectorAll(".nav-arrow");
+
+  /* ambil warna aktif dari container */
+  const bgColor = getComputedStyle(target).backgroundColor;
+
+  if (actions) actions.style.display = "none";
+  if (themeSwitcher) themeSwitcher.style.display = "none";
+
+  navArrows.forEach(nav => {
+    nav.style.display = "none";
+  });
+
+  await new Promise(resolve => setTimeout(resolve, 200));
+
+  const canvas = await html2canvas(target, {
+    scale: 7,
+    useCORS: true,
+    backgroundColor: bgColor,
+    logging: false
+  });
+
+  const link = document.createElement("a");
+  link.download = "ocean-menu-premium.png";
+  link.href = canvas.toDataURL("image/png", 1.0);
+  link.click();
+
+  if (actions) actions.style.display = "flex";
+  if (themeSwitcher) themeSwitcher.style.display = "flex";
+
+  navArrows.forEach(nav => {
+    nav.style.display = "block";
+  });
+}
+</script>
+</body>
+</html>

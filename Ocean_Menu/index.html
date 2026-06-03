@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ocean Menu</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Playfair Display', serif;
+  background: #07141d;
+}
+
+/* =========================
+   THEME VARIABLES
+========================= */
+
+/* DEFAULT = sedikit gelap (deep ocean luxury) */
+:root {
+  --bg-main: #10222d;
+  --gold-main: #d4af37;
+  --gold-soft: rgba(212,175,55,0.5);
+  --text-soft: #b8b8b8;
+}
+
+/* Gelap sedang = sunset blue luxury */
+body.theme-mid {
+  --bg-main: #2f4a5a;
+  --gold-main: #f1c86a;
+  --gold-soft: rgba(241,200,106,0.5);
+  --text-soft: #f2dfc2;
+}
+
+/* Terang / hangat = golden sunset premium */
+body.theme-warm {
+  --bg-main: #6b4b3e;
+  --gold-main: #ffd98a;
+  --gold-soft: rgba(255,217,138,0.55);
+  --text-soft: #fff0d2;
+}
+/* =========================
+   COLOR SWITCHER
+========================= */
+
+.theme-switcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid rgba(212,175,55,0.35);
+  border-radius: 14px;
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(10px);
+}
+
+.theme-btn {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.25);
+  transition: 0.25s;
+}
+
+.theme-btn:hover {
+  transform: scale(1.12);
+}
+
+.theme-btn.dark {
+  background: #10222d;
+}
+
+.theme-btn.mid {
+  background: #18313f;
+}
+
+.theme-btn.warm {
+  background: #5a4a35;
+}
+
+/* =========================
+   COVER
+========================= */
+
+.cover {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* BACKGROUND REAL */
+.bg-black {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-main);
+  z-index: 0;
+  transition: 0.35s ease;
+}
+
+/* FRAME */
+.cover-frame {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  max-width: 420px;
+  aspect-ratio: 210 / 297;
+  border: 1.5px solid var(--gold-main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.35s ease;
+}
+
+/* DOUBLE BORDER */
+.cover-frame::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid var(--gold-soft);
+  transition: 0.35s ease;
+}
+
+/* CONTENT */
+.cover-content {
+  text-align: center;
+  width: 70%;
+}
+
+/* LOGO */
+.logo img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-main);
+  margin-bottom: 20px;
+  transition: 0.35s ease;
+}
+
+/* TEXT */
+.restaurant-name {
+  font-size: 30px;
+  letter-spacing: 4px;
+  color: var(--gold-main);
+  margin-bottom: 10px;
+  transition: 0.35s ease;
+}
+
+.tagline {
+  font-size: 11px;
+  color: var(--text-soft);
+  letter-spacing: 2px;
+  transition: 0.35s ease;
+}
+
+.divider {
+  width: 50px;
+  height: 1px;
+  background: var(--gold-main);
+  margin: 20px auto 0;
+  transition: 0.35s ease;
+}
+
+/* =========================
+   NAVIGATION ARROWS
+========================= */
+
+.nav-arrow {
+  position: fixed;
+  bottom: 20px;
+  z-index: 999;
+}
+
+.nav-arrow a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--gold-main);
+  border-radius: 50%;
+  color: var(--gold-main);
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+  background: rgba(0,0,0,0.15);
+}
+
+.nav-arrow a:hover {
+  background: var(--gold-main);
+  color: #000;
+}
+
+.nav-arrow.next {
+  right: 20px;
+}
+
+/* =========================
+   PRINT FIX
+========================= */
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
+  }
+
+  .cover {
+    width: 210mm;
+    height: 297mm;
+    position: relative;
+  }
+
+  .bg-black {
+    background: var(--bg-main) !important;
+  }
+
+  .cover-frame {
+    position: absolute;
+    width: 180mm;
+    height: 267mm;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* 🔥 tombol warna & arrow hilang saat print/download PNG */
+  .theme-switcher,
+  .nav-arrow {
+    display: none !important;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.actions button {
+  padding: 12px 20px;
+  border: 1px solid #d4af37;
+  background: #111;
+  color: #d4af37;
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.actions button:hover {
+  background: #d4af37;
+  color: #000;
+}
+.actions {
+  position: relative;
+  z-index: 9999;
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     THEME SWITCHER
+========================= -->
+
+<div class="theme-switcher">
+  <div class="theme-btn dark" onclick="setTheme('dark')"></div>
+  <div class="theme-btn mid" onclick="setTheme('mid')"></div>
+  <div class="theme-btn warm" onclick="setTheme('warm')"></div>
+</div>
+
+<!-- =========================
+     COVER
+========================= -->
+
+<div class="cover">
+
+  <div class="bg-black"></div>
+
+  <div class="cover-frame">
+    <div class="cover-content">
+
+      <div class="logo">
+        <img src="logo.png" alt="Logo">
+      </div>
+
+      <div class="restaurant-name">OCEAN</div>
+      <div class="tagline">Cafe & Resto • EST. 2023</div>
+
+      <div class="divider"></div>
+
+    </div>
+  </div>
+</div>
+
+ <div class="actions">
+  <button onclick="window.print()">Export PDF</button>
+  <button onclick="downloadPNG()">Download PNG</button>
+</div>
+
+<div class="nav-arrow next">
+  <a href="page2.html">
+    <i class="fas fa-arrow-right"></i>
+  </a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+<script>
+async function downloadPNG() {
+  /* 🔥 target tetap frame A4 */
+  const target = document.querySelector(".cover-frame");
+
+  const actions = document.querySelector(".actions");
+  const themeSwitcher = document.querySelector(".theme-switcher");
+  const navArrow = document.querySelector(".nav-arrow");
+
+  /* ambil warna theme aktif dari background asli */
+  const bgColor = getComputedStyle(
+    document.querySelector(".bg-black")
+  ).backgroundColor;
+
+  /* sembunyikan tombol sementara */
+  if (actions) actions.style.display = "none";
+  if (themeSwitcher) themeSwitcher.style.display = "none";
+  if (navArrow) navArrow.style.display = "none";
+
+  /* 🔥 kasih background langsung ke frame sementara */
+  const originalBg = target.style.background;
+  target.style.background = bgColor;
+
+  /* delay kecil biar render bersih */
+  await new Promise(resolve => setTimeout(resolve, 200));
+
+  const canvas = await html2canvas(target, {
+    scale: 7,
+    useCORS: true,
+    backgroundColor: bgColor, /* penting: jangan null */
+    logging: false
+  });
+
+  const link = document.createElement("a");
+  link.download = "ocean-menu-HD.png";
+  link.href = canvas.toDataURL("image/png", 1.0);
+  link.click();
+
+  /* balikin seperti semula */
+  target.style.background = originalBg;
+
+  if (actions) actions.style.display = "flex";
+  if (themeSwitcher) themeSwitcher.style.display = "flex";
+  if (navArrow) navArrow.style.display = "block";
+}
+</script>
+<script>
+function setTheme(mode) {
+  document.body.classList.remove("theme-mid", "theme-warm");
+
+  if (mode === "mid") {
+    document.body.classList.add("theme-mid");
+  }
+
+  if (mode === "warm") {
+    document.body.classList.add("theme-warm");
+  }
+}
+</script>
+
+</body>
+</html>

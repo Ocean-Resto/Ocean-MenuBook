@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Satnight Syahdu - Ocean Cafe & Resto</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">  
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  background:#07131c;
+  font-family:'Montserrat',sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  padding:20px;
+  color:white;
+}
+
+.poster{
+  width:100%;
+  max-width:950px;
+  min-height:720px;
+
+ background:
+linear-gradient(
+rgba(0,0,0,.82),
+rgba(0,0,0,.92)
+),
+url('foi.png') center/cover no-repeat;
+
+  border-radius:30px;
+  overflow:hidden;
+  position:relative;
+
+ box-shadow:
+0 0 0 1px rgba(243,201,105,.25),
+0 0 25px rgba(243,201,105,.12),
+0 0 120px rgba(243,201,105,.10),
+0 40px 120px rgba(0,0,0,.9);
+
+  border:1px solid rgba(255,255,255,.08);
+  outline:2px solid rgba(255,190,92,.75);
+  outline-offset:-14px;
+}
+
+/* HEADER */
+.header{
+  padding:35px 45px 10px;
+  position:relative;
+  z-index:2;
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.logo{
+  width:78px;
+  height:78px;
+  object-fit:contain;
+
+  background:rgba(255,255,255,.03);
+
+  padding:8px;
+
+  border-radius:50%;
+
+  /* BORDER EMAS */
+  border:2px solid #f3c969;
+
+  /* GLOW LUXURY */
+  box-shadow:
+  0 0 0 4px rgba(212,166,79,.12),
+  0 0 20px rgba(212,166,79,.35),
+  0 0 45px rgba(255,190,92,.18);
+
+  filter:
+  drop-shadow(0 0 8px rgba(255,255,255,.2));
+}
+
+.brand h1{
+  font-size:48px;
+  line-height:1;
+  font-weight:900;
+  letter-spacing:4px;
+  color:#fff;
+}
+
+.brand p{
+  margin-top:6px;
+  font-size:15px;
+  color:#d7d7d7;
+  letter-spacing:2px;
+}
+
+/* CONTENT */
+.content{
+  position:relative;
+  z-index:2;
+  padding:10px 45px 50px;
+}
+
+.event-badge{
+  display:inline-block;
+  background:linear-gradient(135deg,#ff9f1a,#ff6b00);
+  color:white;
+  padding:10px 24px;
+  border-radius:100px;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:2px;
+  margin-top:30px;
+  box-shadow:0 8px 25px rgba(255,140,0,.35);
+}
+
+.title{
+  font-family:'Playfair Display',serif;
+
+  font-size:110px;
+
+  line-height:.88;
+
+  color:#fff;
+
+  letter-spacing:-2px;
+
+  text-shadow:
+  0 2px 0 rgba(0,0,0,.55),
+  0 10px 30px rgba(0,0,0,.55),
+  0 0 12px rgba(255,255,255,.08);
+}
+  
+.subtitle{
+  margin-top:18px;
+  font-size:30px;
+  color:#d9d9d9;
+  max-width:650px;
+  line-height:1.7;
+}
+
+/* INFO BOX */
+.info-box{
+
+  display:flex;
+
+  gap:0;
+
+  margin-top:35px;
+
+  border:1px solid rgba(243,201,105,.35);
+
+  border-radius:18px;
+
+  overflow:hidden;
+
+  background:rgba(0,0,0,.45);
+}
+
+.card{
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(0,0,0,.55),
+    rgba(255,190,92,.05)
+  );
+
+  border:1.5px solid rgba(255,190,92,.35);
+
+  border-radius:22px;
+
+  padding:22px;
+
+  backdrop-filter:blur(12px);
+
+  box-shadow:
+  0 0 20px rgba(255,190,92,.08),
+  inset 0 0 15px rgba(255,255,255,.03);
+
+  transition:.3s;
+}
+.card{
+  flex:1;
+  border:none;
+  border-right:1px solid rgba(243,201,105,.18);
+  border-radius:0;
+}
+
+.card:last-child{
+  border-right:none;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  background:rgba(255,255,255,.12);
+}
+
+.label{
+  font-size:13px;
+  letter-spacing:2px;
+  color:#ffbe5c;
+  margin-bottom:10px;
+  font-weight:700;
+}
+
+.value{
+  font-size:18px;
+  line-height:1.5;
+  font-weight:600;
+}
+
+
+  /* =========================
+SPECIAL PERFORM SECTION
+========================= */
+
+.perform{
+  margin-top:50px;
+
+  display:grid;
+  grid-template-columns:1fr 320px;
+
+  gap:35px;
+
+  align-items:center;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(255,170,0,.10),
+    rgba(255,255,255,.04)
+  );
+
+  border:1px solid rgba(212,166,79,.18);
+
+  border-radius:34px;
+
+  padding:34px;
+
+  backdrop-filter:blur(12px);
+
+  position:relative;
+
+  overflow:hidden;
+}
+  
+.perform-left{
+  flex:1;
+}
+
+.perform-title{
+  font-size:14px;
+  letter-spacing:4px;
+  color:#ffbe5c;
+  margin-bottom:16px;
+  font-weight:700;
+}
+
+.band-name{
+  font-size:64px;
+  font-weight:900;
+  line-height:1;
+
+  color:#fff;
+
+  text-shadow:
+  0 0 20px rgba(255,255,255,.08);
+}
+
+.band-desc{
+  margin-top:18px;
+  color:#d6d6d6;
+  line-height:1.8;
+  font-size:28px;
+  max-width:500px;
+}
+
+.band-image{
+
+  width:100%;
+  height:520px;
+
+  object-fit:cover;
+  object-position:center top;
+
+  border-radius:28px;
+
+  border:3px solid rgba(243,201,105,.75);
+
+  padding:8px;
+
+  background:#0a0a0a;
+
+  box-shadow:
+  inset 0 0 25px rgba(243,201,105,.08),
+  0 0 35px rgba(243,201,105,.18),
+  0 35px 70px rgba(0,0,0,.8);
+}
+.band-image:hover{
+  transform:translateY(-4px) scale(1.01);
+}
+
+.perform::before{
+  content:'';
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+  radial-gradient(
+    circle at top right,
+    rgba(255,190,92,.12),
+    transparent 35%
+  );
+
+  pointer-events:none;
+}
+
+/* FOOTER */
+.footer{
+  margin-top:45px;
+  padding-top:25px;
+  border-top:1px solid rgba(255,255,255,.12);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:18px;
+}
+
+.address{
+  font-size:25px;
+  color:#d6d6d6;
+  line-height:1.8;
+}
+
+.contact{
+  text-align:right;
+}
+
+.phone{
+  font-size:28px;
+  font-weight:800;
+  color:#ffbe5c;
+}
+
+.cta{
+  margin-top:8px;
+  font-size:14px;
+  letter-spacing:2px;
+  color:#d6d6d6;
+}
+
+/* RESPONSIVE */
+@media(max-width:850px){
+
+  .poster{
+    width:100%;
+  }
+
+  .title{
+    font-size:58px;
+  }
+
+  .perform{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .band-image{
+    width:100%;
+    height:320px;
+  }
+
+  .info-box{
+    grid-template-columns:1fr;
+  }
+
+  .footer{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .contact{
+    text-align:center;
+  }
+
+}
+
+
+@media (max-height:500px) and (orientation:landscape){
+
+  body{
+    padding:0;
+  }
+
+  .poster{
+    border-radius:0;
+    min-height:100vh;
+  }
+
+  .header{
+    padding:20px 28px 5px;
+  }
+
+  .content{
+    padding:5px 28px 28px;
+  }
+
+  .title{
+    font-size:42px;
+  }
+
+  .subtitle{
+    font-size:14px;
+    line-height:1.5;
+  }
+
+  .info-box{
+    gap:10px;
+  }
+
+  .card{
+    padding:14px;
+  }
+
+  .perform{
+    padding:18px;
+    gap:18px;
+  }
+
+  .band-name{
+    font-size:34px;
+  }
+
+ .band-image{
+
+  width:260px;
+
+  /* portrait proper */
+  aspect-ratio:3/4;
+
+  object-fit:cover;
+  object-position:center top;
+
+  border-radius:26px;
+
+  /* BORDER GOLD */
+  border:3px solid rgba(212,166,79,.55);
+
+  /* INNER FRAME */
+  outline:1px solid rgba(255,255,255,.08);
+  outline-offset:-8px;
+
+  background:#111;
+
+  flex-shrink:0;
+
+  /* SHADOW */
+  box-shadow:
+  0 18px 50px rgba(0,0,0,.55),
+  0 0 35px rgba(212,166,79,.18),
+  inset 0 0 20px rgba(255,255,255,.04);
+
+  transition:.35s ease;
+}
+
+/* hover elegan */
+.band-image:hover{
+  transform:translateY(-4px) scale(1.01);
+}
+
+  .footer{
+    margin-top:22px;
+    padding-top:18px;
+  }
+
+}
+
+@media(max-width:850px){
+
+  .perform{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .band-image{
+    height:420px;
+    max-width:320px;
+    margin:auto;
+  }
+
+}
+/* NAVIGATION ARROWS */
+.nav-arrow {
+  position: fixed;
+  bottom: 20px;
+  z-index: 999;
+}
+
+.nav-arrow a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #d4af37;
+  border-radius: 50%;
+  color: #d4af37;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+/* HOVER */
+.nav-arrow a:hover {
+  background: #d4af37;
+  color: #000;
+}
+
+/* POSISI */
+.nav-arrow.next {
+  right: 20px;
+}
+
+.nav-arrow.prev {
+  left: 20px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.actions button {
+  padding: 12px 20px;
+  border: 1px solid #d4af37;
+  background: #111;
+  color: var(--gold-main);
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.actions button:hover {
+  background: #d4af37;
+  color: #000;
+}
+
+.poster::before{
+
+  content:'';
+
+  position:absolute;
+
+  inset:18px;
+
+  border:1.5px solid rgba(255,190,92,.28);
+
+  border-radius:22px;
+
+  pointer-events:none;
+}
+
+.poster::after{
+  content:'';
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+  radial-gradient(circle at 20% 30%, rgba(255,190,92,.12), transparent 18%),
+  radial-gradient(circle at 80% 20%, rgba(255,190,92,.10), transparent 18%),
+  radial-gradient(circle at 70% 80%, rgba(255,190,92,.08), transparent 18%);
+
+  pointer-events:none;
+}
+
+.title span{
+
+  display:block;
+
+  font-family:'Great Vibes',cursive;
+
+  font-size:120px;
+
+  color:#f3c969;
+
+  margin-top:-15px;
+
+  text-shadow:
+  0 0 18px rgba(243,201,105,.35),
+  0 0 35px rgba(243,201,105,.18);
+}
+
+.perform-benefits{
+  margin-top:28px;
+
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.benefit{
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(243,201,105,.10),
+    rgba(255,255,255,.03)
+  );
+
+  border:1px solid rgba(243,201,105,.22);
+
+  padding:14px 18px;
+
+  border-radius:14px;
+
+  font-size:15px;
+  font-weight:600;
+
+  color:#f3e2b0;
+
+  letter-spacing:.5px;
+
+  box-shadow:
+  inset 0 0 10px rgba(255,255,255,.02),
+  0 0 18px rgba(243,201,105,.05);
+}
+.benefit:first-child{
+
+  background:
+  linear-gradient(
+    90deg,
+    rgba(243,201,105,.22),
+    rgba(243,201,105,.04)
+  );
+
+  border:1px solid rgba(243,201,105,.45);
+
+  color:#ffd87a;
+
+  box-shadow:
+  0 0 25px rgba(243,201,105,.12);
+}
+
+.mini-note{
+
+  margin-top:22px;
+
+  display:inline-block;
+
+  padding:10px 18px;
+
+  border-radius:100px;
+
+  border:1px solid rgba(243,201,105,.28);
+
+  background:rgba(243,201,105,.05);
+
+  color:#f3c969;
+
+  font-size:12px;
+
+  letter-spacing:2px;
+
+  font-weight:700;
+}
+
+/* PLATTER PROMO */
+.platter-promo{
+  margin-top: 28px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+
+  position:relative;
+}
+
+/* IMAGE */
+.platter-img{
+  width:140px;
+
+  filter:
+  drop-shadow(0 10px 18px rgba(0,0,0,0.45));
+
+  animation: floatPlatter 3s ease-in-out infinite;
+}
+
+/* TEXT AREA */
+.platter-info{
+  display:flex;
+  flex-direction:column;
+}
+
+/* TITLE */
+.platter-label{
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:1px;
+
+  color:#f4d27a;
+}
+
+/* PRICE */
+.platter-price{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  margin-top:4px;
+}
+
+.old-price{
+  font-size:18px;
+  color:#999;
+
+  text-decoration:line-through;
+}
+
+.new-price{
+  font-size:34px;
+  font-weight:900;
+
+  color:#ffffff;
+
+  text-shadow:
+  0 0 10px rgba(255,255,255,0.35);
+}
+
+/* SAVE */
+.save-price{
+  margin-top:2px;
+
+  font-size:14px;
+  font-weight:700;
+
+  color:#ffcc4d;
+}
+
+/* FLOAT EFFECT */
+@keyframes floatPlatter{
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-6px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+}
+
+/* LIMITED BADGE */
+.limited-badge{
+  position:absolute;
+
+  top:-12px;
+  left:50%;
+
+  transform:translateX(-50%) rotate(-4deg);
+
+  background:linear-gradient(
+    135deg,
+    #ffcc4d,
+    #ff8a00
+  );
+
+  color:#111;
+
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
+
+  padding:6px 14px;
+
+  border-radius:50px;
+
+  box-shadow:
+  0 6px 16px rgba(255,140,0,0.45);
+
+  z-index:5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="poster">
+
+  <!-- HEADER -->
+  <div class="header">
+
+    <div class="topbar">
+
+      <img src="logo.png" class="logo">
+
+      <div class="brand">
+        <h1>OCEAN</h1>
+        <p>Cafe & Resto Est.2023</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <div class="event-badge">
+      LIVE MUSIC EVENT
+    </div>
+
+   <div class="title">
+  Satnight
+  <span>Syahdu</span>
+</div>
+     <div class="benefit">
+    ✦ SEASON 2
+  </div>
+
+    <div class="subtitle">
+      Temani malam minggumu dengan suasana hangat,
+      live acoustic performance, dan vibes luxury modern
+      hanya di Ocean Cafe & Resto.
+    </div>
+
+    <!-- INFO -->
+    <div class="info-box">
+
+      <div class="card">
+        <div class="label">DATE</div>
+        <div class="value">
+          Sabtu<br>
+          30 Mei 2026
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="label">PLACE</div>
+        <div class="value">
+          Ocean Cafe & Resto
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="label">START</div>
+        <div class="value">
+          Open Gate 19.00 WIB
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SPECIAL PERFORM -->
+    <div class="perform">
+
+      <div class="perform-left">
+
+        <div class="perform-title">
+          SPECIAL PERFORMANCE
+        </div>
+
+        <div class="band-name">
+          Foicoustic
+        </div>
+
+        <div class="band-desc">
+          Nikmati penampilan acoustic spesial
+          dengan lagu-lagu terbaik yang siap
+          membuat malam minggumu semakin syahdu.
+        </div>
+
+        <div class="perform-benefits">
+
+  <div class="benefit">
+    ✦ Discount Up To 20% All Menu
+  </div>
+
+  <div class="benefit">
+    ✦ Free Coffee Tubruk & Tea
+  </div>
+
+  <div class="benefit">
+    ✦ Cozy Acoustic & Romantic Vibes
+  </div>
+
+</div>
+
+      <!-- SHARING PLATTER PROMO -->
+<div class="platter-promo">
+
+  <div class="limited-badge">
+  LIMITED PROMO
+</div>
+
+  <img src="mix.png" class="platter-img">
+
+  <div class="platter-info">
+
+    <div class="platter-label">
+      PROMO SHARING PLATTER
+    </div>
+
+    <div class="platter-price">
+
+      <span class="old-price">
+        53K
+      </span>
+
+      <span class="new-price">
+        33K
+      </span>
+
+    </div>
+
+    <div class="save-price">
+      SAVE 20K 🔥
+    </div>
+
+  </div>
+
+</div>
+
+        <div class="mini-note">
+  LIMITED SEAT • BOOK YOUR TABLE NOW
+</div>
+  <div class="mini-note">
+  Promo is available from 7.00 pm - 10.00 pm.
+</div>
+
+      </div>
+
+      <img src="foi.png" class="band-image">
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+
+      <div class="address">
+        Jl Ahmad Yani No 34 Kutorejo, Sragen<br>
+        Cozy Place • Good Music • Best Experience
+      </div>
+
+      <div class="contact">
+        <div class="phone">
+          0857-1246-9835
+        </div>
+
+        <div class="cta">
+          RESERVATION NOW
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+   <div class="actions">
+  <button onclick="window.print()">Export PDF</button>
+  <button onclick="downloadPNG()">Download PNG</button>
+</div>
+  
+ <div class="nav-arrow prev">
+  <a href="page16.html">
+    <i class="fas fa-arrow-left"></i>
+  </a>
+</div>
+
+  <div class="nav-arrow next">
+  <a href="page18.html">
+    <i class="fas fa-arrow-right"></i>
+  </a>
+</div>
+
+</div>
+
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script>
+async function downloadPNG() {
+  const target = document.querySelector(".poster");
+
+  const actions = document.querySelector(".actions");
+  const themeSwitcher = document.querySelector(".theme-switcher");
+  const navArrows = document.querySelectorAll(".nav-arrow");
+
+  /* ambil warna aktif dari container */
+  const bgColor = getComputedStyle(target).backgroundColor;
+
+  if (actions) actions.style.display = "none";
+  if (themeSwitcher) themeSwitcher.style.display = "none";
+
+  navArrows.forEach(nav => {
+    nav.style.display = "none";
+  });
+
+  await new Promise(resolve => setTimeout(resolve, 200));
+
+  const canvas = await html2canvas(target, {
+    scale: window.devicePixelRatio * 2,
+    useCORS: true,
+    backgroundColor: bgColor,
+    logging: false
+  });
+
+  const link = document.createElement("a");
+  link.download = "ocean-menu-premium.png";
+  link.href = canvas.toDataURL("image/png", 1.0);
+  link.click();
+
+  if (actions) actions.style.display = "flex";
+  if (themeSwitcher) themeSwitcher.style.display = "flex";
+
+  navArrows.forEach(nav => {
+    nav.style.display = "block";
+  });
+}
+</script>
+
+
+</body>
+</html>

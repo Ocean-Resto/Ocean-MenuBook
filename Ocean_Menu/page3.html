@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ocean Menu</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Playfair Display', serif;
+  background: #07141d;
+}
+
+/* PAGE */
+.page {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  padding: 20px 0;
+}
+
+/* =========================
+   THEME VARIABLES
+========================= */
+
+/* DEFAULT = sedikit gelap (deep ocean luxury) */
+:root {
+  --bg-main: #10222d;
+  --gold-main: #d4af37;
+  --gold-soft: rgba(212,175,55,0.5);
+  --text-soft: #b8b8b8;
+}
+
+/* Gelap sedang = sunset blue luxury */
+body.theme-mid {
+  --bg-main: #2f4a5a;
+  --gold-main: #f1c86a;
+  --gold-soft: rgba(241,200,106,0.5);
+  --text-soft: #f2dfc2;
+}
+
+/* Terang / hangat = golden sunset premium */
+body.theme-warm {
+  --bg-main: #6b4b3e;
+  --gold-main: #ffd98a;
+  --gold-soft: rgba(255,217,138,0.55);
+  --text-soft: #fff0d2;
+}
+/* =========================
+   COLOR SWITCHER
+========================= */
+
+.theme-switcher {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid rgba(212,175,55,0.35);
+  border-radius: 14px;
+  background: rgba(10, 10, 10, 0.55);
+  backdrop-filter: blur(10px);
+}
+
+.theme-btn {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.25);
+  transition: 0.25s;
+}
+
+.theme-btn:hover {
+  transform: scale(1.12);
+}
+
+.theme-btn.dark {
+  background: #10222d;
+}
+
+.theme-btn.mid {
+  background: #18313f;
+}
+
+.theme-btn.warm {
+  background: #5a4a35;
+}
+  
+/* FRAME */
+.frame {
+  width: min(94vw, 480px);
+  min-height: 90vh;
+
+  border: 1.5px solid var(--gold-main);
+  padding: 20px;
+  background: var(--bg-main);
+
+  display: flex;
+  flex-direction: column;
+
+  transition: 0.35s ease;
+}
+/* HEADER */
+.header {
+  flex-shrink: 0;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.logo {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold-main);
+  overflow: hidden;
+  background: #111;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* NAMA RESTO */
+.restaurant-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;          /* diperkecil */
+  margin-top: 10px;
+  letter-spacing: 3px;
+  color: #ffffff !important;
+}
+
+/* TAGLINE */
+.tagline {
+  font-size: 12px;
+  color: #aaa;
+  letter-spacing: 2px;
+  margin-top: 5px;
+}
+
+/* GARIS */
+.divider {
+  width: 50px;
+  height: 1px;
+  background: #d4af37;
+  margin: 15px auto;
+  
+}
+
+/* INFO */
+.info {
+  font-size: 12px;
+  color: #888;
+  line-height: 1;
+  margin: 10px auto 0; /* bawah 0 biar nempel */
+}
+
+/* MENU GRID */
+.menu {
+  flex: 1;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
+
+  gap: 20px;
+
+  align-content: space-between; /* 🔥 penting */
+  justify-content: stretch;
+}
+/* ITEM */
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 🔥 center vertikal */
+  align-items: center;
+  text-align: center;
+}
+
+/* FIXED IMAGE BOX */
+.image-box {
+  width: 100%;
+  height: 78px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: transparent;
+  border: none;
+  overflow: visible;
+}
+
+.image-box img {
+  max-width: 100%;
+  max-height: 100%;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+  display: block;
+
+  /* premium subtle effect */
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.25));
+}
+
+/* TEXT */
+.title {
+  color: #fff;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.desc {
+  color: #aaa;
+  font-size: 12px;
+  line-height: 1.35;
+  margin-top: 2px;
+}
+
+.price {
+  color: var(--gold-main);
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+/* FOOTER */
+.footer {
+  flex-shrink: 0;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(212,175,55,0.2);
+  text-align: center;
+}
+
+.social {
+  display: inline-flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: #bbb;
+  font-size: 10px;
+}
+
+.social div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* PRINT */
+@media print {
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 0;
+    background: white;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+
+  .frame {
+    width: 210mm;
+    height: 297mm;
+
+    padding: 14mm;
+    margin: 0;
+    border: 2px solid #d4af37 !important;
+    background: #0a0a0a !important;
+
+    box-sizing: border-box;
+  }
+
+  .menu {
+    height: 100%;
+    gap: 24px;
+    align-content: space-between;
+  }
+
+  .image-box {
+    height: 95px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .desc {
+    font-size: 10px;
+  }
+
+  .price {
+    font-size: 11px;
+  }
+}
+  
+/* NAVIGATION ARROWS */
+.nav-arrow {
+  position: fixed;
+  bottom: 20px;
+  z-index: 999;
+}
+
+.nav-arrow a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #d4af37;
+  border-radius: 50%;
+  color: var(--gold-main);
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+/* HOVER */
+.nav-arrow a:hover {
+  background: #d4af37;
+  color: #000;
+}
+
+/* POSISI */
+.nav-arrow.next {
+  right: 20px;
+}
+
+.nav-arrow.prev {
+  left: 20px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.actions button {
+  padding: 12px 20px;
+  border: 1px solid #d4af37;
+  background: #111;
+  color: var(--gold-main);
+  cursor: pointer;
+  font-family: inherit;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.actions button:hover {
+  background: #d4af37;
+  color: #000;
+}
+
+/* 🔥 khusus yang kecil */
+.zoom-fix img {
+  transform: scale(1.2); /* bisa lu adjust: 1.1 - 1.4 */
+}
+</style>
+</head>
+<body>
+ <!-- =========================
+     THEME SWITCHER
+========================= -->
+
+<div class="theme-switcher">
+  <div class="theme-btn dark" onclick="setTheme('dark')"></div>
+  <div class="theme-btn mid" onclick="setTheme('mid')"></div>
+  <div class="theme-btn warm" onclick="setTheme('warm')"></div>
+</div>
+  
+<div class="page">
+  <div class="frame">
+
+    <div class="header">
+      <div class="logo">
+        <img src="logo.png">
+      </div>
+
+      <div class="restaurant-name">OCEAN</div>
+      <div class="tagline">Cafe & Resto • EST. 2023</div>
+
+       <div class="info">
+        Jl. Ahmad Yani No.34 Sragen<br>
+        0857-4102-2111 • 0857-1246-9835
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="title">OCEAN SIGNATURE DRINK</div>
+
+    </div>
+
+    <div class="menu">
+
+      <div class="item">
+        <div class="image-box">
+          <img src="creamy-boys.png">
+        </div>
+        <div class="title">Ocean Brown Boys</div>
+        <div class="desc">Signature drink</div>
+        <div class="price">IDR 20K</div>
+      </div>
+
+      <div class="item zoom-fix">
+        <div class="image-box">
+          <img src="cookies-cream.png">
+        </div>
+        <div class="title">Cookies & Cream</div>
+        <div class="desc">Signature drink</div>
+        <div class="price">IDR 25K</div>
+      </div>
+
+      <div class="item zoom-fix">
+        <div class="image-box">
+          <img src="leci-tea.png">
+        </div>
+        <div class="title">Lychee Tea</div>
+        <div class="desc">Signature drink</div>
+        <div class="price">IDR 19K</div>
+      </div>
+
+      <div class="item">
+        <div class="image-box">
+          <img src="strawberry-mojito.png">
+        </div>
+        <div class="title">Strawberry Mojito</div>
+        <div class="desc">Signature drink</div>
+        <div class="price">IDR 23K</div>
+      </div>
+
+       <div class="item">
+        <div class="image-box">
+          <img src="sunset-ocean.png">
+        </div>
+        <div class="title">Ocean Sunset</div>
+        <div class="desc">Signature drink</div>
+        <div class="price">IDR 23K</div>
+      </div>
+
+       <div class="item">
+        <div class="image-box">
+          <img src="lonely-beach.png">
+        </div>
+        <div class="title">Lonely Beach</div>
+        <div class="desc">Signature drink</div>
+        <div class="price">IDR 25K</div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <div class="social">
+        <div><i class="fab fa-instagram"></i> ocean.srg</div>
+        <div><i class="fab fa-facebook-f"></i> oceansrg</div>
+        <div><i class="fab fa-tiktok"></i> ocean bar & kitchen</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+  
+  
+<div class="actions">
+  <button onclick="window.print()">Export PDF</button>
+  <button onclick="downloadPNG()">Download PNG</button>
+</div>
+  
+<div class="nav-arrow prev">
+  <a href="page2.html">
+    <i class="fas fa-arrow-left"></i>
+  </a>
+</div>
+
+<div class="nav-arrow next">
+  <a href="page4.html">
+    <i class="fas fa-arrow-right"></i>
+  </a>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+<script>
+async function downloadPNG() {
+  const target = document.querySelector(".frame");
+
+  const actions = document.querySelector(".actions");
+  const themeSwitcher = document.querySelector(".theme-switcher");
+  const navArrows = document.querySelectorAll(".nav-arrow");
+
+  /* ambil warna aktif dari frame */
+  const bgColor = getComputedStyle(target).backgroundColor;
+
+  /* sembunyikan tombol sementara */
+  if (actions) actions.style.display = "none";
+  if (themeSwitcher) themeSwitcher.style.display = "none";
+
+  navArrows.forEach(nav => {
+    nav.style.display = "none";
+  });
+
+  /* delay kecil biar render bersih */
+  await new Promise(resolve => setTimeout(resolve, 200));
+
+  const canvas = await html2canvas(target, {
+    scale: 7,
+    useCORS: true,
+    backgroundColor: bgColor,
+    logging: false
+  });
+
+  const link = document.createElement("a");
+  link.download = "ocean-menu-ultra-hd.png";
+  link.href = canvas.toDataURL("image/png", 1.0);
+  link.click();
+
+  /* tampilkan lagi */
+  if (actions) actions.style.display = "flex";
+  if (themeSwitcher) themeSwitcher.style.display = "flex";
+
+  navArrows.forEach(nav => {
+    nav.style.display = "block";
+  });
+}
+</script>
+<script>
+function setTheme(mode) {
+  document.body.classList.remove("theme-mid", "theme-warm");
+
+  if (mode === "mid") {
+    document.body.classList.add("theme-mid");
+  }
+
+  if (mode === "warm") {
+    document.body.classList.add("theme-warm");
+  }
+}
+</script>
+</body>
+</html>
